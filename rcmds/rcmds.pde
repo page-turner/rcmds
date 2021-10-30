@@ -1,4 +1,7 @@
-boolean enabled=false; //HOLD SPACE BAR DOWN TO ENABLE
+
+String wifiIP="172.18.154.86";
+
+boolean enabled=false; //space=enable, enter=disable
 
 float x;
 float y;
@@ -7,16 +10,29 @@ float theta1;
 float theta2;
 
 void setup() {
-  size(1500, 800);
+  size(800, 800);
   background(0);
   udp = new UDP(this);
   udp.listen(true);
 }
 void draw() {
   x=mouseX*180.0/width-90;
-  y=mouseY*180.0/height-90;
-  enabled=(keyPressed&&key==' ');
-  background(0);
+  y=mouseY*180.0/height-75;
+  if (keyPressed) {
+    if (key==' ') {
+      enabled=false;
+    } else if (key==ENTER) {
+      enabled=true;
+    }
+  }
+  if (!focused) {
+    enabled=false;
+  }
+  if (enabled) {
+    background(0, 0, 0);
+  } else {
+    background(50, 20, 0);
+  }
   fill(255);
   textSize(60);
   text("x: "+str(x), 100, 100);
