@@ -16,8 +16,8 @@ void setup() {
   udp.listen(true);
 }
 void draw() {
-  x=mouseX*180.0/width-90;
-  y=mouseY*180.0/height-75;
+  x=mouseX*50.0/width-25;
+  y=-(mouseY*50.0/height-25);
   if (keyPressed) {
     if (key==' ') {
       enabled=false;
