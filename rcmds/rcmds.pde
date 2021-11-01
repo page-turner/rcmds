@@ -1,5 +1,5 @@
 
-String wifiIP="172.18.154.86";
+String wifiIP="172.18.137.72";
 
 boolean enabled=false; //space=enable, enter=disable
 
@@ -16,8 +16,24 @@ void setup() {
   udp.listen(true);
 }
 void draw() {
-  x=mouseX*50.0/width-25;
-  y=-(mouseY*50.0/height-25);
+  if (keyPressed) {
+    if (key==CODED&&keyCode==UP) {
+      y+=.1;
+    }
+    if (key==CODED&&keyCode==DOWN) {
+      y-=.1;
+    }
+    if (key==CODED&&keyCode==LEFT) {
+      x-=.1;
+    }
+    if (key==CODED&&keyCode==RIGHT) {
+      x+=.1;
+    }
+  }
+  if (mousePressed) {
+    x=mouseX*50.0/width-25;
+    y=-(mouseY*50.0/height-25);
+  }
   if (keyPressed) {
     if (key==' ') {
       enabled=false;
