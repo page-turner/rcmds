@@ -1,10 +1,14 @@
 
-String wifiIP="172.18.137.72";
+String wifiIP="172.18.128.196";
 
 boolean enabled=false; //space=enable, enter=disable
 
 float x;
 float y;
+boolean go;
+
+float torque1;
+float torque2;
 
 float theta1;
 float theta2;
@@ -30,6 +34,7 @@ void draw() {
       x+=.1;
     }
   }
+  go=keyPressed&&key=='g';
   if (mousePressed) {
     x=mouseX*50.0/width-25;
     y=-(mouseY*50.0/height-25);
@@ -51,19 +56,25 @@ void draw() {
   }
   fill(255);
   textSize(60);
-  text("x: "+str(x), 100, 100);
-  text("y: "+str(y), 100, 200);
-  text("theta1: "+str(theta1), 100, 300);
-  text("theta2: "+str(theta2), 100, 400);
+  text("connected: "+str(millis()-wifiReceivedMillis<3000), 100, 100);
+  text("x: "+str(x), 100, 200);
+  text("y: "+str(y), 100, 300);
+  text("theta1: "+str(theta1), 100, 400);
+  text("theta2: "+str(theta2), 100, 500);
+  text("torque1: "+str(torque1), 100, 600);
+  text("torque2: "+str(torque2), 100, 700);
   sendWifiData(true);
 }
 
 void WifiDataToRecv() {
   theta1=recvFl();
   theta2=recvFl();
+  torque1=recvFl();
+  torque2=recvFl();
 }
 void WifiDataToSend() {
   sendBl(enabled);
   sendFl(x);
   sendFl(y);
+  sendBl(go);
 }
