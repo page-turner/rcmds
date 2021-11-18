@@ -16,7 +16,7 @@ void sendWifiData(boolean t) {
       wifiPing=-1;
     }
     wifiSentMillis=millis();
-    wifiArrayCounter=0;
+    wifiArrayCounter=(byte)0;
     WifiDataToSend();
     byte[] tosend=new byte[wifiArrayCounter];
     for (int i=0; i<wifiArrayCounter; i++) {
@@ -30,15 +30,15 @@ void receive( byte[] data, String ip, int port ) {//wifi event handler
   for (int i=0; i<data.length; i++) {
     arrayRecvd[i]=(256+data[i])%256;
   }
-  wifiArrayCounter=0;
+  wifiArrayCounter=(byte)0;
   WifiDataToRecv();
   sendWifiData(false);
 }
 void sendBl(boolean d) {
   if (d) {
-    arrayToSend[wifiArrayCounter]=1;
+    arrayToSend[wifiArrayCounter]=(byte)1;
   } else {
-    arrayToSend[wifiArrayCounter]=0;
+    arrayToSend[wifiArrayCounter]=(byte)0;
   }
   wifiArrayCounter++;
 }
