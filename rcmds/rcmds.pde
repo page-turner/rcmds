@@ -3,8 +3,8 @@ String wifiIP="172.18.157.204";
 
 boolean enabled=false; //space=enable, enter=disable
 
-float x;
-float y;
+float x=.1;
+float y=12;
 boolean go;
 float fx;
 float fy;
