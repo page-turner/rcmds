@@ -1,13 +1,15 @@
 
-String wifiIP="172.18.157.204";
+String wifiIP="10.0.0.14";
 
 boolean enabled=false; //space=enable, enter=disable
 
-float x=.1;
-float y=12;
+float x=0;
+float y=27;
 boolean go;
 float fx;
 float fy;
+float lx;
+float ly;
 
 float torque1;
 float torque2;
@@ -50,8 +52,8 @@ void draw() {
       enabled=true;
     }
     if (key=='z') {
-      x=.1;
-      y=12;
+      x=0;
+      y=27;
     }
   }
   if (enabled) {
@@ -70,7 +72,9 @@ void draw() {
   text("torque2: "+str(torque2), 100, 400);
   text("Fx: "+str(fx), 100, 450);
   text("Fy: "+str(fy), 100, 500);
-  text("state: "+str(state), 100, 550);
+  text("lx: "+str(lx), 100, 550);
+  text("ly: "+str(ly), 100, 600);
+  text("state: "+str(state), 100, 650);
   sendWifiData(true);
 }
 
@@ -81,6 +85,8 @@ void WifiDataToRecv() {
   torque2=recvFl();
   fx=recvFl();
   fy=recvFl();
+  lx=recvFl();
+  ly=recvFl();
   state=recvIn();
 }
 void WifiDataToSend() {
@@ -88,12 +94,14 @@ void WifiDataToSend() {
   sendFl(x);
   sendFl(y);
   sendBl(go);
-  sendFl(14.0);//hoverX
-  sendFl(10.0);//hoverY
-  sendFl(-0.080);//targetForceY
-  sendFl(0.50);//peelDist
-  sendFl(2.0);//peelTime
-  sendFl(7.0);//liftHeight
-  sendFl(9.0);//liftX
-  sendFl(1.00);//downSpeed
+  sendFl(12.5);//hoverX
+  sendFl(20.0);//hoverY
+  sendFl(-0.90);//targetForceY
+  sendFl(2.0);//peelDist
+  sendFl(1.0);//peelTime
+  sendFl(11.0);//liftHeight
+  //sendFl(11.0);//liftX
+  sendFl(3.0);//downSpeed
+  //sendIn(10850);//enc1Zero
+  //sendIn(8900);//enc2Zero
 }
